@@ -1,5 +1,7 @@
 const router = require("express").Router();
-import ExampleModel from '../models/ExampleModel';
+const ExampleModel = require('../models/ExampleModel');
+const verify = require('../routes/auth/verifyToken');
+
 
 // example get
 router.get("/exampleGet", (req, res) => {
@@ -7,7 +9,7 @@ router.get("/exampleGet", (req, res) => {
 });
 
 //example post
-router.post("/examplePost", async (req, res) => {
+router.post("/examplePost",verify, async (req, res) => {
 
     //save a record for example
     const ex = new ExampleModel({
@@ -43,4 +45,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-export default router
+module.exports = router;

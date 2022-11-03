@@ -1,37 +1,32 @@
-//imports and configurations
-import express, { json } from "express";  // import express
+const express = require('express');
 const app = express(); // express app
-import { config } from 'dotenv'; // import dotenv
-import { connect } from "mongoose"; // import MongoDb
-import cors from 'cors'; // for CORS policy
-import { json as _json } from 'body-parser'; // body parser to parse as json
-config(); // configure dotenv to use secret keys
+const dotenv = require('dotenv'); // import dotenv
+const mongoose = require("mongoose") // import MongoDb
+const cors = require('cors'); // for CORS policy
+const bodyParser = require('body-parser'); // body parser to parse as json
+dotenv.config(); // configure dotenv to use secret keys
 
 
 // routes
-import exampleRoute from './routes/exampleRoute';
+const exampleRoute = require('./routes/exampleRoute');
+const authRoute = require('./routes/auth/auth');
 
 // connect mongodb server
-connect(
+mongoose.connect(
     process.env.MONGO_DB_URL
 )
-    .then(() => console.log("DB Connection Successful"))
-    .catch((err) => console.log(err));
+.then(()=>console.log("DB Connection Successfull"))
+.catch((err)=>console.log(err));
 
-// middlewares
-app.use(json());
-app.use(_json()); // using body-parser for the requests
+//middlewares
+app.use(express.json());
+app.use(bodyParser.json());// using body-parser for the requests
 app.use(cors()); // for CORS-POLICY
 
-app.use("/api/exampleRoute", exampleRoute); // use exampleRoute endpoints if url starts with /api/exampleRoute
+app.use("/api/exampleRoute",exampleRoute); // use exampleRoute endpoints if url starts with /api/exampleRoute
+app.use("/auth",authRoute); // use exampleRoute endpoints if url starts with /auth
 
 // start the app <npm start>
 app.listen(process.env.PORT || 5000, () => {
     console.log("The Server Is Running...");
 });
-
-// nodejs connect to firebase?
-server.js
-
-initializeApp
-

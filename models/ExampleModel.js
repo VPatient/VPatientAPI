@@ -1,7 +1,7 @@
 //mongodb example model to use in routes
-import { Schema, model } from 'mongoose';
+const mongoose =  require('mongoose');
 
-const ExampleSchema = Schema({
+const ExampleSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -17,4 +17,4 @@ const ExampleSchema = Schema({
     }
 });
 
-export default model('ExampleModel',ExampleSchema);
+module.exports = ExampleSchema;
