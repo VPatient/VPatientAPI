@@ -1,18 +1,18 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const BloodSugarTraceSchema = new Schema ({
+const BloodSugarTraceSchema = new mongoose.Schema ({
     time: {
         type: Date,
-        required: true,
+        required: true
     },
     result: {
         type: String,
-        required: true,
+        required: true
     },
     note: {
-        type: String,
+        type: String
     },
-    owner: { type: moongose.Types.ObjectId, ref: 'PatientModel' },
+    owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 });
 
-export default model('BloodSugarTraceModel', BloodSugarTraceSchema);
+mongoose.model('BloodSugarTraceModel', BloodSugarTraceSchema);

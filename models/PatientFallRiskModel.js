@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const PatientFallRiskSchema = new Schema ({
-    fallRisk: { type: moongose.Types.ObjectId, ref: 'FallRiskFormModel' },
-    owner: { type: moongose.Types.ObjectId, ref: 'PatientModel' },
+const PatientFallRiskSchema = new mongoose.Schema({
+    fallRisk: { type: mongoose.Types.ObjectId, ref: 'FallRiskFormModel' },
+    owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 });
 
-export default model('PatientFallRiskModel', PatientFallRiskSchema);
+module.exports = mongoose.model('PatientFallRiskModel', PatientFallRiskSchema)

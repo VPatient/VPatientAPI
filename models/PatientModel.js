@@ -1,113 +1,113 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const PatientSchema = new Schema({
+const PatientSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     gender: {
         type: String,
-        required: true,
+        required: true
     },
     age: {
         type: Number,
-        required: true,
+        required: true
     },
     maritalStatus: {
         type: String,
-        required: true,
+        required: true
     },
     degree: {
         type: String,
-        required: true,
+        required: true
     },
     job: {
         type: String,
-        required: true,
+        required: true
     },
     children: {
         type: Number,
-        required: true,
+        required: true
     },
     insurance: {
         type: String,
-        required: true,
+        required: true
     },
     racialAndReligion: {
         type: String,
-        required: true,
+        required: true
     },
     companion: {
         type: String,
-        required: true,
+        required: true
     },
     bloodType: {
         type: String,
-        required: true,
+        required: true
     },
     contagiousDisease: {
         type: Boolean,
         required: true,
-        default: false,
+        default: false
     },
     primaryDiagnosis: {
         type: String,
-        required: true,
+        required: true
     },
     height: {
         type: Number,
-        required: true,
+        required: true
     },
     weight: {
         type: Number,
-        required: true,
+        required: true
     },
     hospitalizationReason: {
         type: String,
-        required: true,
+        required: true
     },
     chronicDiseases: {
-        type: String,
+        type: String
     },
     previouslyHospitalized: {
-        type: String,
+        type: String
     },
     allergies: {
-        type: String,
+        type: String
     },
     cigaretteHabit: {
-        type: String,
+        type: String
     },
     alcoholHabit: {
-        type: String,
+        type: String
     },
     substanceAbuse: {
-        type: String,
+        type: String
     },
     motherCauseofDeath: {
-        type: String,
+        type: String
     },
     dadCauseofDeath: {
-        type: String,
+        type: String
     },
     siblingCauseofDeath: {
-        type: String,
+        type: String
     },
     closeRelativeCauseofDeath: {
-        type: String,
+        type: String
     },
     painLocation: {
-        type: String,
+        type: String
     },
     painIntensity: {
-        type: Number,
+        type: Number
     },
     painType: {
-        type: String,
+        type: String
     },
     painQualification: {
-        type: String,
-    },
+        type: String
+    }
 });
 
-export default model('PatientModel', PatientSchema);
+modules.export = mongoose.model('PatientModel', PatientSchema);

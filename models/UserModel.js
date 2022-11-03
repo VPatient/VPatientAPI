@@ -5,13 +5,13 @@ const UserSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        max:64,
+        max: 64,
         min: 2
     },
     studentNumber: {
         type: String,
         required: true,
-        max:32,
+        max: 32,
         min: 1
     },
     email: {
@@ -32,4 +32,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('UserSchema',UserSchema)
+module.exports = mongoose.model('UserSchema', UserSchema)

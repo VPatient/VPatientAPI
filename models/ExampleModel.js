@@ -1,5 +1,5 @@
 //mongodb example model to use in routes
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 
 const ExampleSchema = mongoose.Schema({
     title: {
@@ -17,4 +17,4 @@ const ExampleSchema = mongoose.Schema({
     }
 });
 
-module.exports = ExampleSchema;
+mongoose.model('ExampleModel', ExampleSchema);

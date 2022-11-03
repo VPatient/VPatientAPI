@@ -1,23 +1,23 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const LaboratoryResultSchema = new Schema ({
+const LaboratoryResultSchema = new mongoose.Schema({
     parameterName: {
         type: String,
-        required: true,
+        required: true
     },
     result: {
         type: String,
-        required: true,
+        required: true
     },
     unit: {
         type: String,
-        required: true,
+        required: true
     },
     referanceInterval: {
         type: String,
-        required: true,
+        required: true
     },
-    owner: { type: moongose.Types.ObjectId, ref: 'PatientModel' },
+    owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 });
 
-export default model('LaboratoryResultModel', LaboratoryResultSchema);
+module.exports = mongoose.model('LaboratoryResultModel', LaboratoryResultSchema)

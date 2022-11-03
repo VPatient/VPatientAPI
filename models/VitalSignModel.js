@@ -1,28 +1,28 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const VitalSignSchema = new Schema ({
+const VitalSignSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
-        default: Date.now,
+        default: Date.now
     },
     bloodPressure: {
         type: String,
-        required: true,
+        required: true
     },
     pulseOverMinute: {
         type: String,
-        required: true,
+        required: true
     },
     breathOverMinute: {
         type: String,
-        required: true,
+        required: true
     },
     bodyTemperature: {
         type: Number,
-        required: true,
+        required: true
     },
-    owner: { type: moongose.Types.ObjectId, ref: 'PatientModel' },
+    owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 });
 
-export default model('VitalSignModel', VitalSignSchema);
+module.exports = mongoose.model('VitalSignModel', VitalSignSchema)

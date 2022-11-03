@@ -1,31 +1,31 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const NortonPressureUlcerSchema = new Schema({
+const NortonPressureUlcerSchema = new mongoose.Schema({
     physicalCondition: {
         type: Number,
-        required: true,
+        required: true
     },
     mentalCondition: {
         type: Number,
-        required: true,
+        required: true
     },
     activityCondition: {
         type: Number,
-        required: true,
+        required: true
     },
     movementCondition: {
         type: Number,
-        required: true,
+        required: true
     },
     incontinenceCondition: {
         type: Number,
-        required: true,
+        required: true
     },
     date: {
         type: Date,
-        default: Date.now,
+        default: Date.now
     },
-    owner: { type: moongose.Types.ObjectId, ref: 'PatientModel' },
+    owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 });
 
-export default model('NortonPressureUlcerModel', NortonPressureUlcerSchema);
+module.exports = mongoose.model('NortonPressureUlcerModel', NortonPressureUlcerSchema)
