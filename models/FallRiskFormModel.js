@@ -1,17 +1,17 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
 
-const FallRiskFormSchema = new Schema ({
+const FallRiskFormSchema = new mongoose.Schema({
     factor: {
         type: String,
-        required: true,
+        required: true
     },
     major: {
         type: Boolean,
-        required: true,
+        required: true
     },
     point: {
         type: Number,
-    },
+    }
 });
 
-export default model('FallRiskFormModel', FallRiskFormSchema);
+module.exports = mongoose.model('FallRiskFormModel', FallRiskFormSchema)
