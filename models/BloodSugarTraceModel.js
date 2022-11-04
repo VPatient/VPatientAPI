@@ -13,6 +13,7 @@ const BloodSugarTraceSchema = new mongoose.Schema ({
         type: String
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-});
+},
+{timestamps: true});
 
 mongoose.model('BloodSugarTraceModel', BloodSugarTraceSchema);

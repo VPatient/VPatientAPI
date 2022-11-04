@@ -10,6 +10,7 @@ const PatientDiagnosisSchema = new mongoose.Schema ({
         required: true
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-});
+},
+{timestamps: true});
 
 mongoose.model('PatientDiagnosisModel', PatientDiagnosisSchema);

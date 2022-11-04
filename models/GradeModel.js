@@ -7,6 +7,7 @@ const GradeSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-});
+},
+{timestamps: true});
 
 mongoose.model('GradeModel', GradeSchema);

@@ -11,7 +11,11 @@ const FallRiskFormSchema = new mongoose.Schema({
     },
     point: {
         type: Number,
+    },
+    order: {
+        type: Number,
     }
-});
+},
+{timestamps: true});
 
 module.exports = mongoose.model('FallRiskFormModel', FallRiskFormSchema)

@@ -19,10 +19,11 @@ const VitalSignSchema = new mongoose.Schema({
         required: true
     },
     bodyTemperature: {
-        type: Number,
+        type: String,
         required: true
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-});
+},
+{timestamps: true});
 
 module.exports = mongoose.model('VitalSignModel', VitalSignSchema)
