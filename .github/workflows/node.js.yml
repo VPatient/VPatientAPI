@@ -27,5 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm install
     - run: Copy-Item -Path 'C:\actions-runner\_work\VPatientAPI\VPatientAPI\*' -Destination 'C:\VPatient\'
