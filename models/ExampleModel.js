@@ -15,6 +15,7 @@ const ExampleSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+},
+{timestamps: true});
 
 mongoose.model('ExampleModel', ExampleSchema);

@@ -100,7 +100,7 @@ const PatientSchema = new mongoose.Schema({
         type: String
     },
     painIntensity: {
-        type: Number
+        type: String
     },
     painType: {
         type: String
@@ -108,6 +108,7 @@ const PatientSchema = new mongoose.Schema({
     painQualification: {
         type: String
     }
-});
+},
+{timestamps: true});
 
-modules.export = mongoose.model('PatientModel', PatientSchema);
+module.exports = mongoose.model('PatientModel', PatientSchema);

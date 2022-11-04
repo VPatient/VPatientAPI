@@ -18,6 +18,7 @@ const LaboratoryResultSchema = new mongoose.Schema({
         required: true
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-});
+},
+{timestamps: true});
 
 module.exports = mongoose.model('LaboratoryResultModel', LaboratoryResultSchema)
