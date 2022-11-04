@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ScenarioSchema = new mongoose.Schema({
+const ScenarioSchema = mongoose.Schema({
     patient: { type: mongoose.Types.ObjectId, ref: 'PatientModel' },
     sequence: {
         type: Number,
@@ -21,7 +21,9 @@ const ScenarioSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
-});
+    },
+    
+},
+{timestamps: true});
 
-mongoose.model('ScenarioModel', ScenarioSchema);
+module.exports = mongoose.model("ScenarioModel",ScenarioSchema);
