@@ -28,3 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm install
+    - name: file transfer
+    - run: Copy-Item -Path "C:\actions-runner\_work\VPatientAPI\VPatientAPI\*" -Destination "C:\VPatient\"
