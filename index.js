@@ -8,7 +8,6 @@ dotenv.config(); // configure dotenv to use secret keys
 
 
 // routes
-const exampleRoute = require('./routes/exampleRoute');
 const authRoute = require('./routes/auth/auth');
 const scenarioRoute = require('./routes/scenario/scenario');
 const patientRoute = require('./routes/patient/patient');
@@ -25,7 +24,6 @@ app.use(express.json());
 app.use(bodyParser.json());// using body-parser for the requests
 app.use(cors()); // for CORS-POLICY
 
-app.use("/api/exampleRoute", exampleRoute); // use exampleRoute endpoints if url starts with /api/exampleRoute
 app.use("/auth", authRoute); // use auth endpoints if url starts with /auth
 app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts with /scenario
 app.use("/patient", patientRoute); // use scenario endpoints if url starts with /scenario
