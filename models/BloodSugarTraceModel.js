@@ -16,4 +16,4 @@ const BloodSugarTraceSchema = new mongoose.Schema ({
 },
 {timestamps: true});
 
-mongoose.model('BloodSugarTraceModel', BloodSugarTraceSchema);
+module.exports = mongoose.model('BloodSugarTraceModel', BloodSugarTraceSchema);

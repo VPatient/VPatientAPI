@@ -13,4 +13,4 @@ const PatientDiagnosisSchema = new mongoose.Schema ({
 },
 {timestamps: true});
 
-mongoose.model('PatientDiagnosisModel', PatientDiagnosisSchema);
+module.exports = mongoose.model('PatientDiagnosisModel', PatientDiagnosisSchema);
