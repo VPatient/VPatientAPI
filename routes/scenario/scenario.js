@@ -91,5 +91,40 @@ router.delete("/:id", verify, async (req, res) => {
         .catch(err => res.json({ message: err }))
 });
 
+// GET SCENARIO STATS
+router.get("/stats", async(req,res)=>{
+    const date = new Date();
+    const lastYear = new Date(date.setFullYear(date.getFullYear()-1));
+    try{
+
+        
+        // total scenarios created by months
+        // returns the last 1 year scenario data
+        const data = await ScenarioModel.aggregate([
+            {
+                $match : {
+                    createdAt: {$gte: lastYear}
+                }
+            },
+            {
+                $project: {
+                    month: {$month: "$createdAt"}
+                },
+            },
+            {
+                $group: {
+                    _id: "$month",
+                    total: {$sum: 1},
+                }
+            }
+
+        ]);
+        res.status(200).json(data);
+
+    }
+    catch (err){
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
