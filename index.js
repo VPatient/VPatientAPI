@@ -26,7 +26,7 @@ app.use(cors()); // for CORS-POLICY
 
 app.use("/auth", authRoute); // use auth endpoints if url starts with /auth
 app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts with /scenario
-app.use("/patient", patientRoute); // use scenario endpoints if url starts with /scenario
+app.use("/patient", patientRoute); // use patient endpoints if url starts with /patient
 
 // start the app <npm start>
 app.listen(process.env.PORT || 5000, () => {
