@@ -100,12 +100,12 @@ router.post("/get", verify, async (req, res) => {
 });
 
 // split up route handling to handle subroutes
-router.use("/bloodsugar", bloodSugarRoute); // use patient endpoints if url starts with /patient
-router.use("/diagnosis", diagnosisRoute); // use patient endpoints if url starts with /patient
-router.use("/fallrisk", fallRiskRoute); // use patient endpoints if url starts with /patient
-router.use("/laboratory", laboratoryRoute); // use patient endpoints if url starts with /patient
-router.use("/medicine", medicineRoute); // use patient endpoints if url starts with /patient
-router.use("/nortonpressureulcer", nortonPressureUlcerRoute); // use patient endpoints if url starts with /patient
-router.use("/vitalsign", vitalSignRoute); // use patient endpoints if url starts with /patient
+router.use("/bloodsugar", bloodSugarRoute); // use bloodsugar endpoints if url starts with /bloodsugar
+router.use("/diagnosis", diagnosisRoute); // use diagnosis endpoints if url starts with /diagnosis
+router.use("/fallrisk", fallRiskRoute); // use fallrisk endpoints if url starts with /fallrisk
+router.use("/laboratory", laboratoryRoute); // use laboratory endpoints if url starts with /laboratory
+router.use("/medicine", medicineRoute); // use medicine endpoints if url starts with /medicine
+router.use("/nortonpressureulcer", nortonPressureUlcerRoute); // use nortonpressureulcer endpoints if url starts with /nortonpressureulcer
+router.use("/vitalsign", vitalSignRoute); // use vitalsign endpoints if url starts with /vitalsign
 
 module.exports = router;
