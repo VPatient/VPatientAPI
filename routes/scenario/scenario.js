@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const verify = require('../auth/verifyToken');
+const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../common/validation');
 const ScenarioModel = require('../../models/ScenarioModel');
 const PatientModel = require('../../models/PatientModel');
 
 // get scenario(s) based on patientId
-router.get("/get", verify, async (req, res) => {
+router.get("/get", auth, async (req, res) => {
     // validation
     const { error } = queryValidation(req.query);
     if (error) return res.status(400)
@@ -22,7 +22,7 @@ router.get("/get", verify, async (req, res) => {
 });
 
 // create scenario(s)
-router.post("/create", verify, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, async (req, res) => {
     // get patient id
     let patientId = req.body.patientId;
 
@@ -58,12 +58,12 @@ router.post("/create", verify, async (req, res) => {
 
     // insert all
     ScenarioModel.insertMany(scenarios)
-        .then(scenarios => res.json(scenarios))
+.then(scenarios => res.json(scenarios))
         .catch(err => res.json({ message: err }));
 });
 
 // update scenario
-router.put("/:id", verify, async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
     // get patient id
     let scenarioId = req.params.id;
 
@@ -85,7 +85,7 @@ router.put("/:id", verify, async (req, res) => {
 });
 
 // delete scenario
-router.delete("/:id", verify, async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
     ScenarioModel.findByIdAndRemove(req.params.id)
         .then(screnario => res.json(`Successfully deleted: ${screnario}`))
         .catch(err => res.json({ message: err }))

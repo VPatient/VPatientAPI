@@ -16,7 +16,8 @@ const registerValidation = (body) =>{
             .required(),
         password: Joi.string()
             .min(6)
-            .required()
+            .required(),
+        isAdmin: Joi.boolean()
     });
 
     // validate schema

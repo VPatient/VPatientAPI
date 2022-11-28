@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const verify = require('../../auth/verifyToken');
+const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../../common/validation');
 const PatientModel = require('../../../models/PatientModel');
 const FallRiskFormModel = require('../../../models/FallRiskFormModel');
 const PatientFallRiskModel = require('../../../models/PatientFallRiskModel');
 
 // create fall risk form factor
-router.post("/factor/create", verify, async (req, res) => {
+router.post("/factor/create", auth, async (req, res) => {
 
     // results array
     var factors = [];
@@ -33,7 +33,7 @@ router.post("/factor/create", verify, async (req, res) => {
 });
 
 // get fall risk factor form list
-router.get("/factor/list", verify, async (req, res) => {
+router.get("/factor/list", auth, async (req, res) => {
 
     // get factors
     const factors = await FallRiskFormModel.find();
@@ -43,7 +43,7 @@ router.get("/factor/list", verify, async (req, res) => {
 });
 
 // create patient fall risk
-router.post("/create", verify, async (req, res) => {
+router.post("/create", auth, async (req, res) => {
     // get patient id
     let patientId = req.body.owner;
 
@@ -82,7 +82,7 @@ router.post("/create", verify, async (req, res) => {
 });
 
 // get patient fall risk
-router.get("/get", verify, async (req, res) => {
+router.get("/get", auth, async (req, res) => {
     // validation
     const { error } = queryValidation(req.query);
     if (error) return res.status(400)

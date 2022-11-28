@@ -26,7 +26,8 @@ router.post('/register', async (req, res) => {
         name: req.body.name,
         studentNumber: req.body.studentNumber,
         email: req.body.email,
-        password: hashedPassword
+        password: hashedPassword,
+        isAdmin: req.body.isAdmin
     })
     user.save()
         .then(savedUser => res.send({ user: savedUser._id }))
@@ -56,7 +57,8 @@ router.post('/login', async (req, res) => {
             _id: user._id,
             name: user.name,
             studentNumber: user.studentNumber,
-            email: user.email
+            email: user.email,
+            isAdmin: user.isAdmin
 
         }, process.env.SECRET);
 

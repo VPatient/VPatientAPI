@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const verify = require('../auth/verifyToken');
+const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../../routes/auth/verifyToken');
 const { queryValidation, idValidation } = require('../../common/validation');
 const PatientModel = require('../../models/PatientModel');
 const bloodSugarRoute = require('./bloodsugar/bloodsugar');
@@ -11,7 +11,7 @@ const nortonPressureUlcerRoute = require('./nortonpressureulcer/nortonpressureul
 const vitalSignRoute = require('./vitalsign/vitalsign');
 
 // create request of patient
-router.post("/create", verify, async (req, res) => {
+router.post("/create", auth, async (req, res) => {
 
     // create patient model
     var patientModel = new PatientModel({
@@ -54,7 +54,7 @@ router.post("/create", verify, async (req, res) => {
 });
 
 // get list request of patient
-router.get("/list", verify, async (req, res) => {
+router.get("/list", auth, async (req, res) => {
 
     // get all patients
     const scenarios = await PatientModel.find();
@@ -64,7 +64,7 @@ router.get("/list", verify, async (req, res) => {
 });
 
 // get request of patient by id
-router.get("/get", verify, async (req, res) => {
+router.get("/get", auth, async (req, res) => {
     // validation
     const { error } = queryValidation(req.query);
 
@@ -82,7 +82,7 @@ router.get("/get", verify, async (req, res) => {
 });
 
 // post request of patient by id
-router.post("/get", verify, async (req, res) => {
+router.post("/get", auth, async (req, res) => {
     // validation
     const { error } = idValidation(req.body.patientId);
 
