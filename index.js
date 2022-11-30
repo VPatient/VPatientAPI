@@ -11,6 +11,8 @@ dotenv.config(); // configure dotenv to use secret keys
 const authRoute = require('./routes/auth/auth');
 const scenarioRoute = require('./routes/scenario/scenario');
 const patientRoute = require('./routes/patient/patient');
+const gradeRoute = require('./routes/grade/grade');
+const userRoute = require('./routes/user/user');
 
 // connect mongodb server
 mongoose.connect(
@@ -19,14 +21,16 @@ mongoose.connect(
     .then(() => console.log("DB Connection Successfull"))
     .catch((err) => console.log(err));
 
-//middlewares
-app.use(express.json());
+// middlewares
+app.use(express.json()); // express
 app.use(bodyParser.json());// using body-parser for the requests
 app.use(cors()); // for CORS-POLICY
 
 app.use("/auth", authRoute); // use auth endpoints if url starts with /auth
 app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts with /scenario
 app.use("/patient", patientRoute); // use patient endpoints if url starts with /patient
+app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
+app.use("/user", userRoute); // use user endpoints if url starts with /user
 
 // start the app <npm start>
 app.listen(process.env.PORT || 5000, () => {
