@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../../auth/verifyToken');
+const { auth, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../../common/validation');
 const PatientModel = require('../../../models/PatientModel');
 const FallRiskFormModel = require('../../../models/FallRiskFormModel');
 const PatientFallRiskModel = require('../../../models/PatientFallRiskModel');
 
 // create fall risk form factor
-router.post("/factor/create", auth, async (req, res) => {
+router.post("/factor/create", verifyTokenAndAdmin, async (req, res) => {
 
     // results array
     var factors = [];
@@ -43,7 +43,7 @@ router.get("/factor/list", auth, async (req, res) => {
 });
 
 // create patient fall risk
-router.post("/create", auth, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, async (req, res) => {
     // get patient id
     let patientId = req.body.owner;
 
@@ -112,7 +112,7 @@ router.get("/get", auth, async (req, res) => {
     });
 
     // get related fall risk form factors
-    const formFactors = await FallRiskFormModel.find({ _id: {$in: fallRisks} });
+    const formFactors = await FallRiskFormModel.find({ _id: { $in: fallRisks } });
 
     // return
     res.status(200).json(formFactors);

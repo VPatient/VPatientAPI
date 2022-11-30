@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../auth/verifyToken');
+const { auth, verifyTokenAndAdmin } = require('../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../common/validation');
 const ScenarioModel = require('../../models/ScenarioModel');
 const PatientModel = require('../../models/PatientModel');
@@ -58,12 +58,12 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
 
     // insert all
     ScenarioModel.insertMany(scenarios)
-.then(scenarios => res.json(scenarios))
+        .then(scenarios => res.json(scenarios))
         .catch(err => res.json({ message: err }));
 });
 
 // update scenario
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     // get patient id
     let scenarioId = req.params.id;
 
@@ -85,36 +85,34 @@ router.put("/:id", auth, async (req, res) => {
 });
 
 // delete scenario
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     ScenarioModel.findByIdAndRemove(req.params.id)
         .then(screnario => res.json(`Successfully deleted: ${screnario}`))
-        .catch(err => res.json({ message: err }))
+        .catch(err => res.json({ message: err }));
 });
 
 // GET SCENARIO STATS
-router.get("/stats", async(req,res)=>{
+router.get("/stats", auth, async (req, res) => {
     const date = new Date();
-    const lastYear = new Date(date.setFullYear(date.getFullYear()-1));
-    try{
-
-        
+    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+    try {
         // total scenarios created by months
         // returns the last 1 year scenario data
         const data = await ScenarioModel.aggregate([
             {
-                $match : {
-                    createdAt: {$gte: lastYear}
+                $match: {
+                    createdAt: { $gte: lastYear }
                 }
             },
             {
                 $project: {
-                    month: {$month: "$createdAt"}
+                    month: { $month: "$createdAt" }
                 },
             },
             {
                 $group: {
                     _id: "$month",
-                    total: {$sum: 1},
+                    total: { $sum: 1 },
                 }
             }
 
@@ -122,7 +120,7 @@ router.get("/stats", async(req,res)=>{
         res.status(200).json(data);
 
     }
-    catch (err){
+    catch (err) {
         res.status(500).json(err);
     }
 });

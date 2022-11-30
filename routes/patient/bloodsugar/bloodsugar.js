@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../../auth/verifyToken');
+const { auth, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../../common/validation');
 const PatientModel = require('../../../models/PatientModel');
 const BloodSugarTraceModel = require('../../../models/BloodSugarTraceModel');
 
 // create patient blood sugar trace
-router.post("/create", auth, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, async (req, res) => {
     // get patient id
     let patientId = req.body.patientId;
 
