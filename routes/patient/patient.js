@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {auth,verifyTokenAndAdmin,verifyTokenAndAuthorization} = require('../../routes/auth/verifyToken');
+const { auth, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../../routes/auth/verifyToken');
 const { queryValidation, idValidation } = require('../../common/validation');
 const PatientModel = require('../../models/PatientModel');
 const bloodSugarRoute = require('./bloodsugar/bloodsugar');
@@ -11,7 +11,7 @@ const nortonPressureUlcerRoute = require('./nortonpressureulcer/nortonpressureul
 const vitalSignRoute = require('./vitalsign/vitalsign');
 
 // create request of patient
-router.post("/create", auth, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, async (req, res) => {
 
     // create patient model
     var patientModel = new PatientModel({

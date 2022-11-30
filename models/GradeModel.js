@@ -10,4 +10,4 @@ const GradeSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-mongoose.model('GradeModel', GradeSchema);
+module.exports = mongoose.model('GradeModel', GradeSchema);

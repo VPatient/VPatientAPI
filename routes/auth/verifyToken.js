@@ -1,39 +1,42 @@
 const jwt = require('jsonwebtoken');
 
-const auth = (req,res,next) => {
+// auth middleware
+const auth = (req, res, next) => {
     const token = req.header('auth-token');
-    if(!token) return res.status(401).send('Access Denied');
-    try{
-        const verified = jwt.verify(token,process.env.SECRET);
+    if (!token) return res.status(401).send('Access Denied');
+    try {
+        const verified = jwt.verify(token, process.env.SECRET);
         req.user = verified;
         next();
     }
-    catch(err){
+    catch (err) {
         res.status(400).send('Invalid token')
     }
 }
 
-const verifyTokenAndAuthorization = (req,res,next)=>{
-    auth(req,res,()=>{
-        if(req.user.id === req.params.id || req.user.isAdmin){
+// verify token and authorization middleware
+const verifyTokenAndAuthorization = (req, res, next) => {
+    auth(req, res, () => {
+        if (req.user.id === req.params.id || req.user.isAdmin) {
             next();
         }
-        else{
-            res.status(403).json("You're not allowed to do that!");
-        }
-    });
-}
-const verifyTokenAndAdmin= (req,res,next)=>{
-
-    auth(req,res,()=>{
-        if(req.user.isAdmin){
-            next();
-        }
-        else{
-            res.status(403).json("You're not allowed to do that!");
+        else {
+            res.status(403).json("You are not authorized to do that!");
         }
     });
 }
 
+// verify token and admin middleware
+const verifyTokenAndAdmin = (req, res, next) => {
+    auth(req, res, () => {
+        if (req.user.isAdmin) {
+            next();
+        }
+        else {
+            res.status(403).json("You are not authorized to do that!");
+        }
+    });
+}
 
-module.exports = {auth,verifyTokenAndAuthorization,verifyTokenAndAdmin};
+
+module.exports = { auth, verifyTokenAndAuthorization, verifyTokenAndAdmin };
