@@ -47,7 +47,7 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
         painQualification: req.body.painQualification
     });
 
-    // 
+    // save patient model
     patientModel.save()
         .then(patient => res.json(patient))
         .catch(err => res.json({ message: err }));
