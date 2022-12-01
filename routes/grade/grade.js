@@ -56,7 +56,10 @@ router.get("/list", auth, verifyPatient, async (req, res) => {
     let patient = req.patient;
 
     // get grade model
-    const gradeModel = await GradeModel.find({ patient: patient });
+    const gradeModel = await GradeModel.find({ patient: patient }).populate({
+        path: 'user',
+        model: UserModel
+    });
 
     // return grade model
     res.status(200).json(gradeModel);
