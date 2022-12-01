@@ -1,56 +1,35 @@
 const router = require("express").Router();
 const { auth, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../../common/validation');
+const { verifyPatient } = require('../verifyPatient');
 const PatientModel = require('../../../models/PatientModel');
 const PatientDiagnosisModel = require('../../../models/PatientDiagnosisModel');
 
 // create patient diagnosis
-router.post("/create", verifyTokenAndAdmin, async (req, res) => {
-    // get patient id
-    let patientId = req.body.owner;
-
-    // validation
-    const { error } = idValidation(patientId);
-    if (error) return res.status(400)
-        .send(error.details[0].message);
-
+router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
     // get patient
-    const patient = await PatientModel.findOne({ _id: patientId });
-
-    // return if there is not such that patient
-    if (!patient) res.status(500).json(`Cannot find patient with id ${patientId}`);
+    let patient = req.patient;
 
     // create model
     var patientDiagnosis = new PatientDiagnosisModel({
         name: req.body.name,
         true: req.body.true,
-        owner: patientId
+        owner: patient._id
     });
 
     // insert
     PatientDiagnosisModel.create(patientDiagnosis)
-        .then(diagnosis => res.json(diagnosis))
-        .catch(err => res.json({ message: err }));
+        .then(diagnosis => res.status(200).json(diagnosis))
+        .catch(err => res.status(500).json({ message: err }));
 });
 
 // get patient diagnosis
-router.get("/get", auth, async (req, res) => {
-    // validation
-    const { error } = queryValidation(req.query);
-    if (error) return res.status(400)
-        .send(error.details[0].message);
-
-    // get id
-    let patientId = req.query.id;
-
+router.get("/get", auth, verifyPatient, async (req, res) => {
     // get patient
-    const patient = await PatientModel.findOne({ _id: patientId });
-
-    // return if there is not such that patient
-    if (!patient) res.status(500).json(`Cannot find patient with id ${patientId}`);
+    let patient = req.patient;
 
     // get results
-    const diagnosis = await PatientDiagnosisModel.find({ owner: patientId });
+    const diagnosis = await PatientDiagnosisModel.find({ owner: patient });
 
     // return
     res.status(200).json(diagnosis);

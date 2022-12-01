@@ -49,8 +49,8 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
 
     // save patient model
     patientModel.save()
-        .then(patient => res.json(patient))
-        .catch(err => res.json({ message: err }));
+        .then(patient => res.status(200).json(patient))
+        .catch(err => res.status(500).json({ message: err }));
 });
 
 // get list request of patient
