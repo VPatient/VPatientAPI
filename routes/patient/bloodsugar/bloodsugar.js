@@ -39,8 +39,8 @@ router.get("/get", auth, verifyPatient, async (req, res) => {
     // get patient
     let patient = req.patient;
 
-    // get results
-    const traces = await BloodSugarTraceModel.find({ owner: patient });
+    // get results sorted to the time that dosage is taken
+    const traces = await BloodSugarTraceModel.find({ owner: patient }).sort({ time: -1 });
 
     // return
     res.status(200).json(traces);
