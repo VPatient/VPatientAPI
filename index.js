@@ -20,7 +20,7 @@ const userRoute = require('./routes/user/user');
 mongoose.connect(
     process.env.MONGO_DB_URL
 )
-    .then(() => console.log("DB Connection Successfull"))
+    .then(() => console.log("DB connection established"))
     .catch((err) => console.log(err));
 
 // middlewares
@@ -44,6 +44,6 @@ https
     },
     app
   )
-  .listen(process.env.port || 5555, () => {
-    console.log("Server is runing at port 5000");
+  .listen(process.env.PORT || 443, () => {
+    console.log("Server is runing at port: " + (process.env.PORT ? process.env.PORT : 443));
   });
