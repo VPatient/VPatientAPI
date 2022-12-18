@@ -3,6 +3,8 @@ const app = express(); // express app
 const dotenv = require('dotenv'); // import dotenv
 const mongoose = require("mongoose") // import MongoDb
 const cors = require('cors'); // for CORS policy
+const fs = require('fs'); // file system
+const https = require('https'); // https
 const bodyParser = require('body-parser'); // body parser to parse as json
 dotenv.config(); // configure dotenv to use secret keys
 
@@ -32,7 +34,16 @@ app.use("/patient", patientRoute); // use patient endpoints if url starts with /
 app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
 app.use("/user", userRoute); // use user endpoints if url starts with /user
 
-// start the app <npm start>
-app.listen(process.env.PORT || 5000, () => {
-    console.log("The Server Is Running...");
-});
+https
+  .createServer(
+		// Provide the private and public key to the server by reading each
+		// file's content with the readFileSync() method.
+    {
+      key: fs.readFileSync("vpatient.key"),
+      cert: fs.readFileSync("vpatient.crt"),
+    },
+    app
+  )
+  .listen(process.env.port || 5555, () => {
+    console.log("Server is runing at port 5000");
+  });
