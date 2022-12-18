@@ -5,6 +5,7 @@ const mongoose = require("mongoose") // import MongoDb
 const cors = require('cors'); // for CORS policy
 const fs = require('fs'); // file system
 const https = require('https'); // https
+const http = require('http'); // http
 const bodyParser = require('body-parser'); // body parser to parse as json
 dotenv.config(); // configure dotenv to use secret keys
 
@@ -34,16 +35,27 @@ app.use("/patient", patientRoute); // use patient endpoints if url starts with /
 app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
 app.use("/user", userRoute); // use user endpoints if url starts with /user
 
-https
-  .createServer(
-		// Provide the private and public key to the server by reading each
-		// file's content with the readFileSync() method.
-    {
-      key: fs.readFileSync("vpatient.key"),
-      cert: fs.readFileSync("vpatient.crt"),
-    },
-    app
-  )
-  .listen(process.env.PORT || 443, () => {
-    console.log("Server is runing at port: " + (process.env.PORT ? process.env.PORT : 443));
-  });
+// get certificates
+const privLocation = process.env.PRIVATE_LOCATION;
+const privateKey = fs.readFileSync(`${privLocation}/privkey.pem`, 'utf8');
+const certificate = fs.readFileSync(`${privLocation}/cert.pem`, 'utf8');
+const ca = fs.readFileSync(`${privLocation}/chain.pem`, 'utf8');
+
+// create credentials
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+
+// starting both http & https servers
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80, () => {
+	console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+	console.log('HTTPS Server running on port 443');
+});
