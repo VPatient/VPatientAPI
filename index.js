@@ -19,10 +19,10 @@ const userRoute = require('./routes/user/user');
 
 // connect mongodb server
 mongoose.connect(
-    process.env.MONGO_DB_URL
+	process.env.MONGO_DB_URL
 )
-    .then(() => console.log("DB connection established"))
-    .catch((err) => console.log(err));
+	.then(() => console.log("DB connection established"))
+	.catch((err) => console.log(err));
 
 // middlewares
 app.use(express.json()); // express
@@ -47,6 +47,16 @@ const credentials = {
 	cert: certificate,
 	ca: ca
 };
+
+// uncaught exception handler to catch uncaught exceptions
+// prevents the app from crashing
+process.on('uncaughtException', (err, origin) => {
+	console.log(
+		`Caught exception: ${err}\n` +
+		`Exception origin: ${origin}`,
+	);
+});
+
 
 // starting both http & https servers
 const httpServer = http.createServer(app);
