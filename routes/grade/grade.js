@@ -92,4 +92,19 @@ router.get("/get", auth, verifyPatient, async (req, res) => {
     res.status(200).json(gradeModel);
 });
 
+// get request of user
+router.get("/user", auth, async (req, res) => {
+
+    // get grades of user
+    const gradeModel = await GradeModel.find({
+        user: req.user
+    }).populate({
+        path: 'patient',
+        model: PatientModel
+    });
+
+    // return grade model
+    res.status(200).json(gradeModel);
+});
+
 module.exports = router;
