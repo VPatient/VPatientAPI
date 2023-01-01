@@ -9,6 +9,7 @@ const laboratoryRoute = require('./laboratory/laboratory');
 const medicineRoute = require('./medicine/medicine');
 const nortonPressureUlcerRoute = require('./nortonpressureulcer/nortonpressureulcer');
 const vitalSignRoute = require('./vitalsign/vitalsign');
+const GradeModel = require("../../models/GradeModel");
 
 // create request of patient
 router.post("/create", verifyTokenAndAdmin, async (req, res) => {
@@ -56,8 +57,17 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
 // get list request of patient
 router.get("/list", auth, async (req, res) => {
 
-    // get all patients
-    const scenarios = await PatientModel.find();
+    // get users grades
+    const grades = await GradeModel.find({ user: req.user._id });
+
+    // get all patients that user has not graded
+    const scenarios = await PatientModel.find(
+        {
+            _id: {
+                $nin: grades.map(grade => grade.patient)
+            },
+        }
+    );
 
     // return scenarios
     res.status(200).json(scenarios);
