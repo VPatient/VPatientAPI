@@ -17,6 +17,7 @@ router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
         activityCondition: req.body.activityCondition,
         movementCondition: req.body.movementCondition,
         incontinenceCondition: req.body.incontinenceCondition,
+        factors: req.body.factors,
         owner: patient._id
     });
 
@@ -36,6 +37,17 @@ router.get("/get", auth, verifyPatient, async (req, res) => {
 
     // return
     res.status(200).json(traces);
+});
+
+// delete patient norton pressure ulcer
+router.delete("/delete", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
+    // get patient
+    let patient = req.patient;
+
+    // delete
+    NortonPressureUlcerModel.findByIdAndDelete(patient._id)
+        .then(() => res.status(200).json("Norton Pressure Ulcer deleted"))
+        .catch(err => res.status(500).json({ message: err }));
 });
 
 module.exports = router;

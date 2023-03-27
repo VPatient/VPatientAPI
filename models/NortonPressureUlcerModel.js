@@ -25,6 +25,9 @@ const NortonPressureUlcerSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    factors: {
+        type: Array,
+    },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
 },
 {timestamps: true});
