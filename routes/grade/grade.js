@@ -7,7 +7,7 @@ const GradeModel = require('../../models/GradeModel');
 const UserModel = require('../../models/UserModel');
 
 // create grade model
-router.post("/create", auth, verifyPatient, async (req, res) => {
+router.post("/create", auth, verifyPatient, async(req, res) => {
     // validation
     const { error } = gradeValidation(req.body);
     if (error) return res.status(400)
@@ -51,7 +51,7 @@ router.post("/create", auth, verifyPatient, async (req, res) => {
 });
 
 // list grades of patient by id
-router.get("/list", auth, verifyPatient, async (req, res) => {
+router.get("/list", auth, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 
@@ -66,7 +66,7 @@ router.get("/list", auth, verifyPatient, async (req, res) => {
 });
 
 // get request of patient by id
-router.get("/get", auth, verifyPatient, async (req, res) => {
+router.get("/get", auth, verifyPatient, async(req, res) => {
     // query validation
     const { error } = gradeQueryValidation(req.query);
 
@@ -93,7 +93,7 @@ router.get("/get", auth, verifyPatient, async (req, res) => {
 });
 
 // get request of user
-router.get("/user", auth, async (req, res) => {
+router.get("/user", auth, async(req, res) => {
 
     // get grades of user
     const gradeModel = await GradeModel.find({
