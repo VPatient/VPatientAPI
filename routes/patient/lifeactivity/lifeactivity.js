@@ -16,17 +16,11 @@ router.get("", auth, verifyPatient, async(req, res) => {
     // get records with given patient id
     const records = await LifeActivityRecordModel.find({ patient: patient._id });
 
-    console.log(records);
-
     // get questions with records
     const questions = await LifeActivityQuestionModel.find({ _id: { $in: records.map(record => record.question) } });
 
-    console.log(questions);
-
     // get forms with questions
     const forms = await LifeActivityFormModel.find({ _id: { $in: questions.map(question => question.form) } });
-
-    console.log(forms);
 
     const formattedData = forms.map(form => {
         return {
