@@ -2,11 +2,10 @@ const router = require("express").Router();
 const { auth, verifyTokenAndAdmin, verifyTokenAndAuthorization } = require('../../auth/verifyToken');
 const { queryValidation, idValidation } = require('../../../common/validation');
 const { verifyPatient } = require('../verifyPatient');
-const PatientModel = require('../../../models/PatientModel');
 const LaboratoryResultModel = require('../../../models/LaboratoryResultModel');
 
 // create patient laboratory results
-router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 
@@ -36,7 +35,7 @@ router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
 });
 
 // get patient laboratory results
-router.get("/get", auth, verifyPatient, async (req, res) => {
+router.get("/get", auth, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 

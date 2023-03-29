@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const LifeActivityRecordSchema = new mongoose.Schema({
-    section: { type: mongoose.Types.ObjectId, ref: 'LifeActivitySectionModel' },
+    question: { type: mongoose.Types.ObjectId, ref: 'LifeActivityQuestionModel' },
     patient: { type: mongoose.Types.ObjectId, ref: 'PatientModel' },
-    value: {
+    correct_answer: {
         type: String,
         required: true
-    },
+    }
 }, { timestamps: true });
 
-module.exports = mongoose.model('LifeActivityRecordModel', LifeActivityRecordSchema)
+module.exports = mongoose.model('LifeActivityRecordModel', LifeActivityRecordSchema);

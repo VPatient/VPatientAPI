@@ -9,10 +9,11 @@ const laboratoryRoute = require('./laboratory/laboratory');
 const medicineRoute = require('./medicine/medicine');
 const nortonPressureUlcerRoute = require('./nortonpressureulcer/nortonpressureulcer');
 const vitalSignRoute = require('./vitalsign/vitalsign');
+const lifeActivityRoute = require('./lifeactivity/lifeactivity');
 const GradeModel = require("../../models/GradeModel");
 
 // create request of patient
-router.post("/create", verifyTokenAndAdmin, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, async(req, res) => {
 
     // create patient model
     var patientModel = new PatientModel({
@@ -55,26 +56,24 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // get list request of patient
-router.get("/list", auth, async (req, res) => {
+router.get("/list", auth, async(req, res) => {
 
     // get users grades
     const grades = await GradeModel.find({ user: req.user._id });
 
     // get all patients that user has not graded
-    const scenarios = await PatientModel.find(
-        {
-            _id: {
-                $nin: grades.map(grade => grade.patient)
-            },
-        }
-    );
+    const scenarios = await PatientModel.find({
+        _id: {
+            $nin: grades.map(grade => grade.patient)
+        },
+    });
 
     // return scenarios
     res.status(200).json(scenarios);
 });
 
 // get request of patient by id
-router.get("/get", auth, async (req, res) => {
+router.get("/get", auth, async(req, res) => {
     // validation
     const { error } = queryValidation(req.query);
 
@@ -92,7 +91,7 @@ router.get("/get", auth, async (req, res) => {
 });
 
 // post request of patient by id
-router.post("/get", auth, async (req, res) => {
+router.post("/get", auth, async(req, res) => {
     // validation
     const { error } = idValidation(req.body.patientId);
 
@@ -117,5 +116,6 @@ router.use("/laboratory", laboratoryRoute); // use laboratory endpoints if url s
 router.use("/medicine", medicineRoute); // use medicine endpoints if url starts with /medicine
 router.use("/nortonpressureulcer", nortonPressureUlcerRoute); // use nortonpressureulcer endpoints if url starts with /nortonpressureulcer
 router.use("/vitalsign", vitalSignRoute); // use vitalsign endpoints if url starts with /vitalsign
+router.use("/lifeactivity", lifeActivityRoute); // use lifeactivity endpoints if url starts with /lifeactivity
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const LifeActivityDiagnosisSchema = new mongoose.Schema({
+const LifeActivityFormSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,4 +11,4 @@ const LifeActivityDiagnosisSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('LifeActivityDiagnosisModel', LifeActivityDiagnosisSchema)
+module.exports = mongoose.model('LifeActivityFormModel', LifeActivityFormSchema);
