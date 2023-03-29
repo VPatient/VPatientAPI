@@ -22,7 +22,6 @@ const MedicineSchema = new mongoose.Schema({
         required: true
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-},
-{timestamps: true});
+}, { timestamps: true });
 
-module.exports = mongoose.model('MedicineModel', MedicineSchema)
+module.exports = mongoose.model('MedicineModel', MedicineSchema);

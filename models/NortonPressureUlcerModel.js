@@ -29,7 +29,6 @@ const NortonPressureUlcerSchema = new mongoose.Schema({
         type: Array,
     },
     owner: { type: mongoose.Types.ObjectId, ref: 'PatientModel' }
-},
-{timestamps: true});
+}, { timestamps: true });
 
-module.exports = mongoose.model('NortonPressureUlcerModel', NortonPressureUlcerSchema)
+module.exports = mongoose.model('NortonPressureUlcerModel', NortonPressureUlcerSchema);

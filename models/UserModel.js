@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
@@ -31,9 +30,9 @@ const UserSchema = mongoose.Schema({
         default: Date.now
     },
     isAdmin: {
-        type:Boolean, default:false
+        type: Boolean,
+        default: false
     }
-},
-{timestamps: true});
+}, { timestamps: true });
 
-module.exports = mongoose.model('UserSchema', UserSchema)
+module.exports = mongoose.model('UserSchema', UserSchema);

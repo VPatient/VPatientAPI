@@ -16,9 +16,6 @@ const scenarioRoute = require('./routes/scenario/scenario');
 const patientRoute = require('./routes/patient/patient');
 const gradeRoute = require('./routes/grade/grade');
 const userRoute = require('./routes/user/user');
-const lifeActivityDiagnosisRoute = require('./routes/lifeActivity/diagnosis');
-const lifeActivitySectionRoute = require('./routes/lifeActivity/section');
-const lifeActivityRecordRoute = require('./routes/lifeActivity/record');
 
 // connect mongodb server
 mongoose.connect(
@@ -37,9 +34,6 @@ app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts wit
 app.use("/patient", patientRoute); // use patient endpoints if url starts with /patient
 app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
 app.use("/user", userRoute); // use user endpoints if url starts with /user
-app.use("/lifeActivityDiagnosis", lifeActivityDiagnosisRoute); // use user endpoints if url starts with /lifeActivityDiagnosis
-app.use("/lifeActivitySection", lifeActivitySectionRoute); // use user endpoints if url starts with /lifeActivitySection
-app.use("/lifeActivityRecord", lifeActivityRecordRoute); // use user endpoints if url starts with /lifeActivityRecord
 
 
 // get certificates
@@ -69,10 +63,17 @@ process.on('uncaughtException', (err, origin) => {
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(81, () => {
-    console.log('HTTP Server running on port 80');
+// get http port
+const httpPort = process.env.HTTP_PORT;
+
+// get https port
+const httpsPort = process.env.HTTPS_PORT;
+
+// start servers
+httpServer.listen(httpPort, () => {
+    console.log('HTTP Server running on port ' + httpPort);
 });
 
-httpsServer.listen(444, () => {
-    console.log('HTTPS Server running on port 443');
+httpsServer.listen(httpsPort, () => {
+    console.log('HTTPS Server running on port ' + httpsPort);
 });
