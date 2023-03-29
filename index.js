@@ -16,17 +16,20 @@ const scenarioRoute = require('./routes/scenario/scenario');
 const patientRoute = require('./routes/patient/patient');
 const gradeRoute = require('./routes/grade/grade');
 const userRoute = require('./routes/user/user');
+const lifeActivityDiagnosisRoute = require('./routes/lifeActivity/diagnosis');
+const lifeActivitySectionRoute = require('./routes/lifeActivity/section');
+const lifeActivityRecordRoute = require('./routes/lifeActivity/record');
 
 // connect mongodb server
 mongoose.connect(
-	process.env.MONGO_DB_URL
-)
-	.then(() => console.log("DB connection established"))
-	.catch((err) => console.log(err));
+        process.env.MONGO_DB_URL
+    )
+    .then(() => console.log("DB connection established"))
+    .catch((err) => console.log(err));
 
 // middlewares
 app.use(express.json()); // express
-app.use(bodyParser.json());// using body-parser for the requests
+app.use(bodyParser.json()); // using body-parser for the requests
 app.use(cors()); // for CORS-POLICY
 
 app.use("/auth", authRoute); // use auth endpoints if url starts with /auth
@@ -34,6 +37,10 @@ app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts wit
 app.use("/patient", patientRoute); // use patient endpoints if url starts with /patient
 app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
 app.use("/user", userRoute); // use user endpoints if url starts with /user
+app.use("/lifeActivityDiagnosis", lifeActivityDiagnosisRoute); // use user endpoints if url starts with /lifeActivityDiagnosis
+app.use("/lifeActivitySection", lifeActivitySectionRoute); // use user endpoints if url starts with /lifeActivitySection
+app.use("/lifeActivityRecord", lifeActivityRecordRoute); // use user endpoints if url starts with /lifeActivityRecord
+
 
 // get certificates
 const privLocation = process.env.PRIVATE_LOCATION;
@@ -43,18 +50,18 @@ const ca = fs.readFileSync(`${privLocation}/chain.pem`, 'utf8');
 
 // create credentials
 const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
+    key: privateKey,
+    cert: certificate,
+    ca: ca
 };
 
 // uncaught exception handler to catch uncaught exceptions
 // prevents the app from crashing
 process.on('uncaughtException', (err, origin) => {
-	console.log(
-		`Caught exception: ${err}\n` +
-		`Exception origin: ${origin}`,
-	);
+    console.log(
+        `Caught exception: ${err}\n` +
+        `Exception origin: ${origin}`,
+    );
 });
 
 
@@ -62,10 +69,10 @@ process.on('uncaughtException', (err, origin) => {
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(80, () => {
-	console.log('HTTP Server running on port 80');
+httpServer.listen(81, () => {
+    console.log('HTTP Server running on port 80');
 });
 
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
+httpsServer.listen(444, () => {
+    console.log('HTTPS Server running on port 443');
 });
