@@ -27,21 +27,19 @@ router.get("", auth, verifyPatient, async(req, res) => {
             "form_title": form.name,
             "form_sequence": form.sequence,
             "data": [{
-                "questions": [
-                    questions.filter(question => question.form.toString() === form._id.toString()).map(question => {
-                        return {
-                            "question_id": question._id,
-                            "fields": question.fields,
-                            "correct_answer": records.find(record => record.question.toString() === question._id.toString()).correct_answer,
-                            "title": question.title,
-                            "description": "",
-                            "type": question.type,
-                            "remark": question.remark,
-                            "is_mandatory": question.is_mandatory,
-                            "show_answer": question.show_answer
-                        }
-                    })
-                ]
+                "questions": questions.filter(question => question.form.toString() === form._id.toString()).map(question => {
+                    return {
+                        "question_id": question._id,
+                        "fields": question.fields,
+                        "correct_answer": records.find(record => record.question.toString() === question._id.toString()).correct_answer,
+                        "title": question.title,
+                        "description": "",
+                        "type": question.type,
+                        "remark": question.remark,
+                        "is_mandatory": question.is_mandatory,
+                        "show_answer": question.show_answer
+                    }
+                })
             }]
         }
     });
