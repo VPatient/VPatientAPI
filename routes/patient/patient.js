@@ -10,6 +10,7 @@ const medicineRoute = require('./medicine/medicine');
 const nortonPressureUlcerRoute = require('./nortonpressureulcer/nortonpressureulcer');
 const vitalSignRoute = require('./vitalsign/vitalsign');
 const lifeActivityRoute = require('./lifeactivity/lifeactivity');
+const orderRoute = require('./order/order');
 const GradeModel = require("../../models/GradeModel");
 
 // create request of patient
@@ -117,5 +118,6 @@ router.use("/medicine", medicineRoute); // use medicine endpoints if url starts 
 router.use("/nortonpressureulcer", nortonPressureUlcerRoute); // use nortonpressureulcer endpoints if url starts with /nortonpressureulcer
 router.use("/vitalsign", vitalSignRoute); // use vitalsign endpoints if url starts with /vitalsign
 router.use("/lifeactivity", lifeActivityRoute); // use lifeactivity endpoints if url starts with /lifeactivity
+router.use("/order", orderRoute); // use order endpoints if url starts with /order
 
 module.exports = router;

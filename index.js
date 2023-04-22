@@ -16,6 +16,7 @@ const scenarioRoute = require('./routes/scenario/scenario');
 const patientRoute = require('./routes/patient/patient');
 const gradeRoute = require('./routes/grade/grade');
 const userRoute = require('./routes/user/user');
+const orderRoute = require('./routes/order/order');
 
 // connect mongodb server
 mongoose.connect(
@@ -34,7 +35,7 @@ app.use("/scenario", scenarioRoute); // use scenario endpoints if url starts wit
 app.use("/patient", patientRoute); // use patient endpoints if url starts with /patient
 app.use("/grade", gradeRoute); // use grade endpoints if url starts with /grade
 app.use("/user", userRoute); // use user endpoints if url starts with /user
-
+app.use("/order", orderRoute); // use order endpoints if url starts with /order
 
 // get certificates
 const privLocation = process.env.PRIVATE_LOCATION;
