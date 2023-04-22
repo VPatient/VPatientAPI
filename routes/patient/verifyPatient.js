@@ -2,7 +2,7 @@ const { queryValidation, idValidation } = require('../../common/validation');
 const PatientModel = require('../../models/PatientModel');
 
 // verify patient middleware
-const verifyPatient = async (req, res, next) => {
+const verifyPatient = async(req, res, next) => {
     // get id from query
     let queryId = req.query.id;
 
