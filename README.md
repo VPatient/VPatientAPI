@@ -20,10 +20,13 @@ npm install # to install required libraries/packages
 > fill all variables in the given format
 ```
 MONGO_DB_URL= # mongodb connect url
+PORT=5000 # port that is going to be used
 SECRET=ef28ed74551a40deba54b81df485c83a # password hashing secret
 AUTH_SECRET=ef28ed74551a40deba54b81df485c83b # authorizing secret -> to get a user to be an authorized via auth/authorized route
 GRADE_SECRET=ef28ed74551a40deba54b81df485c83c # grade secret -> to use grade/create route and save one grade to user
 PRIVATE_LOCATION=. # absolute or relative path to .pem fiels -> to use SSL
+HTTP_PORT=80 # port to set up http server
+HTTPS_PORT=443 # port to set up http server
 ```
 
 4. You have to run:
