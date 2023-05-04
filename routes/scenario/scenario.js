@@ -6,7 +6,7 @@ const ScenarioModel = require('../../models/ScenarioModel');
 const PatientModel = require('../../models/PatientModel');
 
 // get scenario(s) based on patientId
-router.get("/get", auth, verifyPatient, async (req, res) => {
+router.get("/get", auth, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 
@@ -18,7 +18,7 @@ router.get("/get", auth, verifyPatient, async (req, res) => {
 });
 
 // create scenario(s)
-router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 
@@ -48,7 +48,7 @@ router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
 });
 
 // update scenario
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
     // get patient id
     let scenarioId = req.params.id;
 
@@ -70,21 +70,20 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // delete scenario
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", verifyTokenAndAdmin, async(req, res) => {
     ScenarioModel.findByIdAndRemove(req.params.id)
         .then(screnario => res.json(`Successfully deleted: ${screnario}`))
         .catch(err => res.json({ message: err }));
 });
 
-// GET SCENARIO STATS
-router.get("/stats", auth, async (req, res) => {
+// get scenario stats
+router.get("/stats", auth, async(req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
     try {
         // total scenarios created by months
         // returns the last 1 year scenario data
-        const data = await ScenarioModel.aggregate([
-            {
+        const data = await ScenarioModel.aggregate([{
                 $match: {
                     createdAt: { $gte: lastYear }
                 }
@@ -104,10 +103,57 @@ router.get("/stats", auth, async (req, res) => {
         ]);
         res.status(200).json(data);
 
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).json(err);
     }
 });
+
+// insert scenario(s) to database with given sequence
+router.post("/insert", verifyTokenAndAdmin, verifyPatient, async(req, res) => {
+    // get patient
+    let patient = req.patient;
+
+    // get sequence
+    let sequence = req.body.sequence;
+
+    // declare scenarios
+    var scenarios = [];
+
+    // control models
+    if (!req.body.scenarios) return res.status(500).json('Invalid format');
+
+    // fill scenarios
+    req.body.scenarios.forEach(scenario => {
+        var scenarioModel = new ScenarioModel({
+            patient: patient._id,
+            sequence: sequence++,
+            text: scenario.text,
+            reply: scenario.reply,
+            action: scenario.action
+        });
+
+        scenarios.push(scenarioModel);
+    });
+
+    // get scenarios with sequence greater than or equal to given sequence
+    var scenariosToUpdate = await ScenarioModel.find({ patient: patient, sequence: { $gte: req.body.sequence } });
+
+    // get length of new scenarios
+    var length = scenarios.length;
+
+    // update sequence of scenarios by adding length of new scenarios
+    scenariosToUpdate.forEach(scenario => {
+        scenario.sequence += length;
+    });
+
+    // save scenarios to update
+    scenariosToUpdate.forEach(scenario => {
+        scenario.save();
+    });
+
+    // insert new scenarios to database
+    ScenarioModel.insertMany(scenarios).catch(err => res.json({ message: err })).then(scenarios => res.status(200).json(scenarios));
+});
+
 
 module.exports = router;
