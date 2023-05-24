@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"e4fdad4e20e34c6fb16e3e2954414e68","collectionName":"patientfallriskmodels","type":"collection"}

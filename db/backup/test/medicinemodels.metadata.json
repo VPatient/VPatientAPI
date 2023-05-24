@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"d8600cdaa55d4579b6c4de6d376a1f89","collectionName":"medicinemodels","type":"collection"}

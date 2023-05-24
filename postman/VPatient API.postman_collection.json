@@ -1,0 +1,1455 @@
+{
+	"info": {
+		"_postman_id": "5f09b5fd-6472-4c64-bb8e-4a3de04f8e07",
+		"name": "VPatient API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adam Morningstar\",\r\n    \"studentNumber\": \"1234567890\",\r\n    \"email\": \"example@mail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/auth/register",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@admin.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/auth/login",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "636577a1a9304eb1637daa00",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret\": \"3f9775d60cb44c4f8d4f436567491a92\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/auth/authorize",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"auth",
+								"authorize"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Life Activity",
+					"item": [
+						{
+							"name": "Form",
+							"item": [
+								{
+									"name": "Create Life Activity Form",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Uyku Ve Dinlenme\",\n    \"sequence\": 11\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/form/create",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"form",
+												"create"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Life Activity Forms",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/form/get",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"form",
+												"get"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Life Activity Forms",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sequence\": 1,\n    \"name\": \"Güvenli Çevrenin Sağlanması Ve Sürdürülmesi\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/form/update",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"form",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Life Activity Forms",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sequence\": 12\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/form/delete",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"form",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Question",
+							"item": [
+								{
+									"name": "Create Life Activity Question",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sequence\": 11,\n    \"title\": \"Uyku düzenini bozabilecek durumlar\",\n    \"fields\": [\n        \"Gürültü\",\n        \"Işık\",\n        \"Hemşirelik uygulamaları\",\n        \"Ağrı\",\n        \"Diş gıcırdatma\",\n        \"Gece işemesi\",\n        \"Uyurgezerlik\",\n        \"Kaygı\",\n        \"Kabus\",\n        \"Kolosistomi torbası\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/question/create",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"question",
+												"create"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Life Activity Question Copy",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sequence\": 12,\n    \"title\": \"Görme duyusu 1\",\n    \"fields\": [\n        \"Normal\",\n        \"Azalma\",\n        \"Görmüyor\",\n        \"Miyop\",\n        \"Hipermetrop\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/question/delete",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"question",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Life Activity Questions",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"sequence\": 12,\n    \"title\": \"Görme duyusu\",\n    \"fields\": [\n        \"Normal\",\n        \"Azalma\",\n        \"Görmüyor\",\n        \"Miyop\",\n        \"Hipermetrop\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/question/get",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"question",
+												"get"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Record",
+							"item": [
+								{
+									"name": "Get Life Activity Records",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/record/get",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"record",
+												"get"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Life Activity Record",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"Uyku düzenini bozabilecek durumlar\",\n    \"patientId\": \"636577a1a9304eb1637daa00\",\n    \"correct_answer\": \"Kolostomi torbası\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{apiURL}}/patient/lifeactivity/record/create",
+											"host": [
+												"{{apiURL}}"
+											],
+											"path": [
+												"patient",
+												"lifeactivity",
+												"record",
+												"create"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Life Activity By Patient Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"patientId\": \"636577a1a9304eb1637daa00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/lifeactivity/",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"lifeactivity",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Create Patient Order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"patientId\": \"636577a1a9304eb1637daa00\",\n    \"medicines\": [\n        \"Famodin tb.\",\n        \"Delix tb.\",\n        \"Coraspin tb.\",\n        \"Mukostatin gargara\",\n        \"Klorheks gargara\",\n        \"Contromal 100mg\",\n        \"Parol flk. 100ml\",\n        \"Desefin 1g\",\n        \"Flagy flk. 500mg\",\n        \"TPN Oliclinomel\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/order/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"order",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Order",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"patientId\": \"636577a1a9304eb1637daa00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/order/get",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"order",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Patient Order",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"patientId\": \"636577a1a9304eb1637daa00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/order/remove",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"order",
+										"remove"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blood Sugar",
+					"item": [
+						{
+							"name": "Get Patient Blood Sugar Trace",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/bloodsugar/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"bloodsugar",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Patient Blood Sugar Trace",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"bloodSugarTrace\": [\r\n        {\r\n            \"time\": \"2022-09-03T06:00:00.000Z\",\r\n            \"result\": \"80 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-03T12:00:00.000Z\",\r\n            \"result\": \"133 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-03T18:00:00.000Z\",\r\n            \"result\": \"160 mg/dl\",\r\n            \"note\": \"\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-03T22:00:00.000Z\",\r\n            \"result\": \"114 mg/dl\",\r\n            \"note\": \"Doz atlandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-04T02:00:00.000Z\",\r\n            \"result\": \"148 mg/dl\",\r\n            \"note\": \"\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-04T06:00:00.000Z\",\r\n            \"result\": \"122 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-04T12:30:00.000Z\",\r\n            \"result\": \"196 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-04T22:00:00.000Z\",\r\n            \"result\": \"158 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-05T02:00:00.000Z\",\r\n            \"result\": \"123 mg/dl\",\r\n            \"note\": \"\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-05T06:00:00.000Z\",\r\n            \"result\": \"104 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        },\r\n        {\r\n            \"time\": \"2022-09-05T12:00:00.000Z\",\r\n            \"result\": \"114 mg/dl\",\r\n            \"note\": \"Rütin insülin dozu uygulandı\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/bloodsugar/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"bloodsugar",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Laboratory",
+					"item": [
+						{
+							"name": "Create Patient Laboratory Results",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"laboratoryResults\": [\r\n        {\r\n            \"parameterName\": \"WBC\",\r\n            \"result\": \"7,45\",\r\n            \"unit\": \"10^3/uL\",\r\n            \"referanceInterval\": \"4,33-10,3\"\r\n        },\r\n        {\r\n            \"parameterName\": \"RBC\",\r\n            \"result\": \"4,02\",\r\n            \"unit\": \"10^3/uL\",\r\n            \"referanceInterval\": \"4,70-5,77\"\r\n        },\r\n        {\r\n            \"parameterName\": \"HGB\",\r\n            \"result\": \"11,9\",\r\n            \"unit\": \"g/dl\",\r\n            \"referanceInterval\": \"13,6-17,2\"\r\n        },\r\n        {\r\n            \"parameterName\": \"HCT\",\r\n            \"result\": \"36,8\",\r\n            \"unit\": \"%\",\r\n            \"referanceInterval\": \"42-52\"\r\n        },\r\n        {\r\n            \"parameterName\": \"PLT\",\r\n            \"result\": \"211\",\r\n            \"unit\": \"10^3/uL\",\r\n            \"referanceInterval\": \"140-409\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Glikoz\",\r\n            \"result\": \"196\",\r\n            \"unit\": \"mg/dL\",\r\n            \"referanceInterval\": \"79-115\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Üre\",\r\n            \"result\": \"40\",\r\n            \"unit\": \"mg/dL\",\r\n            \"referanceInterval\": \"10-50\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Kreatinin\",\r\n            \"result\": \"0,60\",\r\n            \"unit\": \"mg/dL\",\r\n            \"referanceInterval\": \"0,60-1,20\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Total bilirubin\",\r\n            \"result\": \"<0,10\",\r\n            \"unit\": \"mg/dL\",\r\n            \"referanceInterval\": \"0,00-0,50\"\r\n        },\r\n        {\r\n            \"parameterName\": \"AST\",\r\n            \"result\": \"17\",\r\n            \"unit\": \"IU/L\",\r\n            \"referanceInterval\": \"15-41\"\r\n        },\r\n        {\r\n            \"parameterName\": \"ALT\",\r\n            \"result\": \"7\",\r\n            \"unit\": \"IU/L\",\r\n            \"referanceInterval\": \"10-40\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Total protein\",\r\n            \"result\": \"6,93\",\r\n            \"unit\": \"g/dL\",\r\n            \"referanceInterval\": \"6,50-8,10\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Albumin\",\r\n            \"result\": \"2,6\",\r\n            \"unit\": \"g/dL\",\r\n            \"referanceInterval\": \"3,50-5,00\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Sodyum\",\r\n            \"result\": \"135\",\r\n            \"unit\": \"mmol/L\",\r\n            \"referanceInterval\": \"136-144\"\r\n        },\r\n        {\r\n            \"parameterName\": \"Potasyum\",\r\n            \"result\": \"4,7\",\r\n            \"unit\": \"mmol/L\",\r\n            \"referanceInterval\": \"3,60-5,10\"\r\n        },\r\n        {\r\n            \"parameterName\": \"CRP\",\r\n            \"result\": \"5,9\",\r\n            \"unit\": \"mg/L\",\r\n            \"referanceInterval\": \"0-5\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/laboratory/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"laboratory",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Laboratory Results",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/laboratory/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"laboratory",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Norton Pressure Ulcer",
+					"item": [
+						{
+							"name": "Create Patient Norton Pressure Ulcer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"physicalCondition\": 4,\r\n    \"mentalCondition\": 4,\r\n    \"activityCondition\": 4,\r\n    \"movementCondition\": 4,\r\n    \"incontinenceCondition\": 4,\r\n    \"factors\": [\r\n        \"Diyabet\",\r\n        \"Yaşlılık\",\r\n        \"Zayıflık\",\r\n        \"Büyük ameliyat\",\r\n        \"Periferik vasküler hastalık\"\r\n    ],\r\n    \"patientId\": \"636577a1a9304eb1637daa00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/nortonpressureulcer/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"nortonpressureulcer",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Norton Pressure Ulcer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/nortonpressureulcer/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"nortonpressureulcer",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00",
+											"description": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Medicine",
+					"item": [
+						{
+							"name": "Create Patient Medicines",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"medicines\": [\r\n        {\r\n            \"name\": \"Delix tb.\",\r\n            \"dose\": \"10mg 1x1\",\r\n            \"time\": \"09:00\",\r\n            \"reason\": \"Hipertansiyon\",\r\n            \"duration\": \"8 yıl\"\r\n        },\r\n        {\r\n            \"name\": \"Coraspin cap.\",\r\n            \"dose\": \"100mg 1x1\",\r\n            \"time\": \"09:00\",\r\n            \"reason\": \"Hipertansiyon\",\r\n            \"duration\": \"8 yıl\"\r\n        },\r\n        {\r\n            \"name\": \"Novamix İnsülin\",\r\n            \"dose\": \"10 ünite 3x1\",\r\n            \"time\": \"07:00-12:00-18:00\",\r\n            \"reason\": \"Diabetüs Mellitus\",\r\n            \"duration\": \"10 yıl\"\r\n        },\r\n        {\r\n            \"name\": \"Lantus İnsülin\",\r\n            \"dose\": \"14 ünite 1x1\",\r\n            \"time\": \"23:00\",\r\n            \"reason\": \"Diabetüs Mellitus\",\r\n            \"duration\": \"10 yıl\"\r\n        },\r\n        {\r\n            \"name\": \"Famodin tb.\",\r\n            \"dose\": \"50mg 1x1\",\r\n            \"time\": \"08:00\",\r\n            \"reason\": \"Mide ağrısı için\",\r\n            \"duration\": \"10 yıl\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/medicine/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"medicine",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Medicines",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/medicine/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"medicine",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vital Sign",
+					"item": [
+						{
+							"name": "Create Patient Vital Sign",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"2022-09-05T14:00:00.000Z\",\r\n    \"bloodPressure\": \"145/95 mm-Hg\",\r\n    \"pulseOverMinute\": \"66\",\r\n    \"breathOverMinute\": \"18\",\r\n    \"bodyTemperature\": \"38,2\",\r\n    \"owner\": \"636577a1a9304eb1637daa00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/vitalsign/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"vitalsign",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Vital Sign",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/vitalsign/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"vitalsign",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fall Risk Form Factor",
+					"item": [
+						{
+							"name": "Create Fall Risk Form Factor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"factors\": [\r\n        {\r\n            \"factor\": \"65 yaş ve üstü\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 1\r\n        },\r\n        {\r\n            \"factor\": \"Bilinci kapalı\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 2\r\n        },\r\n        {\r\n            \"factor\": \"Son 1 ay içinde düşme öyküsü var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 3\r\n        },\r\n        {\r\n            \"factor\": \"Kronik hastalık öyküsü var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 4\r\n        },\r\n        {\r\n            \"factor\": \"Ayakta/yürürken fiziksel desteğe (yürüteç, koltuk değneği, kişi desteği vb.) ihtiyacı var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 5\r\n        },\r\n        {\r\n            \"factor\": \"Üriner/Fekal kontinans bozukluğu var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 6\r\n        },\r\n        {\r\n            \"factor\": \"Görme durumu zayıf\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 7\r\n        },\r\n        {\r\n            \"factor\": \"4'den fazla ilaç kullanımı var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 8\r\n        },\r\n        {\r\n            \"factor\": \"Hastaya bağlı 3'ün altında bakım ekipmanı var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 9\r\n        },\r\n        {\r\n            \"factor\": \"Yatak korkulukları bulunmuyor/çalışmıyor\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 10\r\n        },\r\n        {\r\n            \"factor\": \"Yürüme alanlarında fiziksel engel(ler) var\",\r\n            \"major\": false,\r\n            \"point\": 1,\r\n            \"order\": 11\r\n        },\r\n        {\r\n            \"factor\": \"Bilinç açık, koopere değil\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 12\r\n        },\r\n        {\r\n            \"factor\": \"Ayakta/yürürken denge problemi var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 13\r\n        },\r\n        {\r\n            \"factor\": \"Baş dönmesi var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 14\r\n        },\r\n        {\r\n            \"factor\": \"Ortostatik hipotansiyonu var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 15\r\n        },\r\n        {\r\n            \"factor\": \"Görme engeli var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 16\r\n        },\r\n        {\r\n            \"factor\": \"Bedensel engeli var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 17\r\n        },\r\n        {\r\n            \"factor\": \"Hastaya bağlı 3 ve üstü bakım ekipmanı var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 18\r\n        },\r\n        {\r\n            \"factor\": \"Son 1 hafta içinde riskli ilaç kullanımı var\",\r\n            \"major\": true,\r\n            \"point\": 5,\r\n            \"order\": 19\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/fallrisk/factor/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"fallrisk",
+										"factor",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Fall Risk Form Factors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/fallrisk/factor/list",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"fallrisk",
+										"factor",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fall Risk Factor",
+					"item": [
+						{
+							"name": "Create Patient Fall Risk Factor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"factorOrder\": 18\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/fallrisk/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"fallrisk",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Fall Risk Factor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/fallrisk/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"fallrisk",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Patient Diagnosis",
+					"item": [
+						{
+							"name": "Create Patient Diagnosis",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tromboembolizm Riski\",\r\n    \"true\": false,\r\n    \"patientId\": \"636577a1a9304eb1637daa00\"\r\n}"
+								},
+								"url": {
+									"raw": "{{apiURL}}/patient/fallrisk/factor/list",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"fallrisk",
+										"factor",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Patient Diagnosises",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/patient/diagnosis/get?id=636577a1a9304eb1637daa00",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"patient",
+										"diagnosis",
+										"get"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "636577a1a9304eb1637daa00"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create New Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bayan C\",\r\n    \"gender\": \"Kadın\",\r\n    \"age\": 35,\r\n    \"maritalStatus\": \"Evli\",\r\n    \"degree\": \"İlkokul terk\",\r\n    \"job\": \"Ev hanımı\",\r\n    \"children\": 0,\r\n    \"insurance\": \"SGK\",\r\n    \"racialAndReligion\": \"Türk/İslam\",\r\n    \"companion\": \"Eşi\",\r\n    \"bloodType\": \"B(-)\",\r\n    \"contagiousDisease\": false,\r\n    \"primaryDiagnosis\": \"Kolorektal Kanser (Kalın Bağırsak Kanseri)\",\r\n    \"height\": 170,\r\n    \"weight\": 55,\r\n    \"hospitalizationReason\": \"Makattan kan gelmesi, yemek yiyememe, kilo kaybı, şiddetli ağrı, idrar yapamama, dışkılıyamama. Sorunun ilk başladığı zaman: 1,5 yıl önce.\",\r\n    \"chronicDisease\": \"Diabetüs Mellitus, Hipertansiyon\",\r\n    \"previouslyHospitalized\": \"1972 yılında geçirilmiş Kolesistektomi operasyonu mevcut.\",\r\n    \"allergies\": \"Yok\",\r\n    \"cigaretteHabit\": \"1/2\",\r\n    \"alcoholHabit\": \"0\",\r\n    \"substanceAbuse\": \"0\",\r\n    \"motherCauseofDeath\": \"Diabetüs Mellitus/Exitus\",\r\n    \"dadCauseofDeath\": \"Colon Ca/Exitus\",\r\n    \"siblingCauseofDeath\": \"Yaşıyor, sorun yok.\",\r\n    \"closeRelativeCauseofDeath\": \"Kuzen(amcasının oğlu) Colon Ca/ tedavi sürecinde.\",\r\n    \"painLocation\": \"Karın bölgesi\",\r\n    \"painIntensity\": \"8-9\",\r\n    \"painType\": \"Aralıklı\",\r\n    \"painQualification\": \"Keskin, Zonklama, Sıkıştırma, Acıma\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/patient/create",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"patient",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/patient/list",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"patient",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/patient/get?id=636577a1a9304eb1637daa00",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"patient",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "636577a1a9304eb1637daa00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Scenario",
+			"item": [
+				{
+					"name": "Get Scenario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/scenario/get?id=636577a1a9304eb1637daa00",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"scenario",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "636577a1a9304eb1637daa00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Scenarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"scenarios\": [\r\n      {\r\n        \"sequence\": 1,\r\n        \"text\": \"Merhaba benim adım ${user.name} hemşire. (Dikkat! Hemşire aktif dinleme yapmaktadır.) Sizinle biraz konuşmak istiyorum, hakkınızda bilgi almak aynı zamanda kliğinimiz hakkında bilgi vermek istiyorum. Bir de kliniğe yatış işlemleriniz ve hasta tanılama dosyanızın doldurulması gerekli, şu anda müsait misiniz?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 2,\r\n        \"text\": \"Merhaba hemşire hanım, buyrun müsaitim konuşabiliriz.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 3,\r\n        \"text\": \"Burası hastanemizin 3. katı, Medikal Ontoloji Servisi olarak geçiyor. Koridorun kesişim noktasında hemşire odamız bulunmaktadır. Herhangi bir sorun olduğunda bize odanızda bulunan telsiz aracılığıyla ulaşabilirsiniz. Öncelikle kendinizden bahsedebilir misiniz? Adınız soyadınız, tam olarak kaç yaşındasınız, bildiğiniz bulaşıcı hastalığınız var mı, yanınızda bir refakatçiniz var mı?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 4,\r\n        \"text\": \"Ben Metin Tabanlı 75 yaşındayım, bulaşıcı hastalığım yok, eşim bana refakat ediyor şu anda kantine gitti iki dakikalığına.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 5,\r\n        \"text\": \"Tanıştığıma memnun oldum, hastalığınızla alakalı konuşmadan önce size birkaç soru daha yöneltmem gerekiyor. Biraz alakasız gelebilir ama medeni durumunuz nedir, eğer var ise kaç çocuğunuz var, nereden mezunsunuz, mesleğiniz ne, sigortanız var mı, boyunuz ve eğer biliyorsanız güncel kilonuz kaç, son olarak kan grubunuz nedir?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 6,\r\n        \"text\": \"Ben lise terkim evladım. Eşimle 52 yıldır evliyiz. Ellerinden öper 3 tane kız çocuğum var biri öğretmen ikisi avukat. Mermer ocağından 'emekli'yim 25 yıl çalıştım, SGK'lıyım. Boyum 182 diye ölçtürmüştüm daha yeni, eğer değiştiyse bilmiyorum. Kilom 60. Kan grubum A(-). Başka sorun varsa sor evladım.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 7,\r\n        \"text\": \"Peki o halde ufak bir form doldurmam gerekiyor hemen sonrasında size birkaç sorum olacak.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 8,\r\n        \"text\": \"{DemographicForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 9,\r\n        \"text\": \"Şimdi hastalığınız ile ilgili bilgi almam gerekiyor. Bana hastalığınızı ilk ne zaman öğrendiniz söyleyebilir misiniz?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 10,\r\n        \"text\": \"Aile Sağlığı Merkezine (ASM) gittiğim zamanlarda hemşirem Kanser Erken Teşhis, Tarama ve Eğitim Merkezleri [KETEM] aracılığıyla 'Gaitada Gizli Kan Testi' vermem için beni ikna etmeye çalışıyordu. İlk teklif ettiğinde hem gaita vermekten utandığım için hem de kanseri kendime yakıştıramadığımdan kabul etmedim ve tarama yaptırmadım. Sonrasında birkaç kez daha konusu geçti ama hep kulak arkası ettim. Ailemde daha önce bu hastalığa yakalanan bir kişi olmamıştı. İnsan kendisine yakıştıramıyor, bende olmaz benim başıma gelmez diye düşünüyor. Şimdi düşününce keşke o zaman tarama testi yaptırmış olsaydım, hastalığım daha erken teşhis edilebilirdi.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 11,\r\n        \"text\": \"Ara sıra hafif bir ağrım oluyordu ama ağır işte çalışmam sebebiyle yorgunluktan olduğunu düşündüm, hiç üzerine düşmedim. Yaklaşık bir buçuk yıl sonra bir gün tuvalete gittiğimde dışkı ile beraber çok hafif bir kan geldiğini fark ettim. Herhalde zorlanmadandır diye düşündüm çünkü o hafta normalden daha az dışkılamam söz konusu oldu hafif bir kabızlık çekiyordum. Hafif bir bel ağrım vardı ve idrar akışımın yavaşladığını hissettim. Eşim maydanoz sapı kaynatıp içirdi. Bir süre belirtiler geriledi ben de düzeldiğimi belki üşütmüş olabileceğimi düşündüm ve yine sağlık kuruluşuna başvurmadım. Bir süre sonra her dışkılamamda kan geldiğini gözlemledim. Ancak bu durumu hâlâ inkar ediyor belirtilerimi hafife alıyordum. Çevremdeki insanlar hemoroidim olabileceğini söylediler. Bir arkadaşın önerisi ile o an için patlıcanı közleyip üzerine koyduk. Bir ay kadar sonra halsizlik ve iştahsızlıkla birlikte kilo kaybetmeye başladım, kabızlık, dışkılama sonrasında zorlanma da vardı.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 12,\r\n        \"text\": \"Bir gün tuvalete gittiğimde idrar yapamadığımı gördüm, o an çok korktum ve hızlıca aile hekimine başvurdum. Prostat kanserinden şüphelenerek testler için acil bir şekilde üroloğa gitmem için yönlendirdi. Ürolog beni muayene etti prostatımın genişlemiş ve üzerinde nodüller olduğunu buldu. Kan testleri yaptı ancak prostat için yapılan kan testlerim normaldi. Kabızlığımın nedeninin alt rektumda bir miktar tıkanıklığa neden olan bir kitle olduğu saptandı bu da prostatımda baskıya neden oluyordu. Genel cerrahi hekimine sevk edildim. Sonra karnımdan tomografi çekildi kolonoskopi yapıldı ve kitleden alınan parçanın piyopsiye gönderilmesi sonucu kanser kesinleşti. (T3B N1 M0 düşük rektal adenokarsinom - T3B, kanserin meni taşıyan tüplere yayıldığı anlamına gelir ve N1 prostatın yakınındaki lenf düğümlerinde kanser hücreleri anlamına gelir)\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 13,\r\n        \"text\": \"Peki tedavi süreciniz nasıl ilerledi?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 14,\r\n        \"text\": \"İdrar akışıyla ilgili sorunları çözen bir ilaçla prostat (50'li yaşların sonlarında erkeklerde yaygın olan) tedavisi gördüm. Ardından ameliyat oldum. Ameliyatla hastalıklı bölgeyi çıkardıktan sonra bağırsağı geçici olarak dışarı aldılar, kolostomi torbamı görüyorsunuz zaten.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 15,\r\n        \"text\": \"Şu anda kliniğe yatış nedeniniz nedir?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 16,\r\n        \"text\": \"Cerrahım beni onkoloğa yönlendirdi. Ameliyattan sonra PET çekildi ve kemoterapim bittikten sonra bağırsağımın içeri alınacağı söylendi.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 17,\r\n        \"text\": \"Sürekli kullandığınız ilaçlarınız nedir? Kronik hastalıklarınız var mı?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 18,\r\n        \"text\": \"İlaçlarınızı gösterebilir misiniz? Bu ilaçları hangi sebeplerle ne zamandan beri günde kaç defa kullanıyorsunuz?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 19,\r\n        \"text\": \"{MedicinesForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 20,\r\n        \"text\": \"Çocukluğunuzdan itibaren hatırladığınız hastaneye yatışınız, geçirilmiş ameliyatlarınız var mı?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 21,\r\n        \"text\": \"Evet. 40-45 yaşlarındayken safra kesesi ameliyatı geçirdim. Safra kesem yok, alındı. O zaman 2 gün yatmıştım hastanede. Başka hatırladığım yatışım yok. Polinikliğe gittim geldim. (1972 yılında geçirilmiş Kolesistektomi operasyonu mevcut)\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 22,\r\n        \"text\": \"Herhangi bir şeye karşı alerjiniz var mı, ilaç, besin maddesi gibi?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 23,\r\n        \"text\": \"Güneşe karşı cildim hassas çok güneşte gezemem. İlaç...(düşünme) bilmiyorum. Bir de yumurtayı fazla yediğimde kaşınmaya başlıyorum bazen ara sıra. (Alerjileri: Yok)\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 24,\r\n        \"text\": \"Sigara, alkol gibi alışkanlıklarınız var mı?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 25,\r\n        \"text\": \"Evet sigara içiyorum 16 yaşımdan beri, alkol içmem.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 26,\r\n        \"text\": \"Günde kaç tane ya da paket?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 27,\r\n        \"text\": \"2 günde 1 paket bitiriyorum.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 28,\r\n        \"text\": \"Ailenizde yakınlarınızda mevcut olan kronik/ciddi hastalıklar var mı? Anne ve babanızın vefatına ne sebep oldu?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 29,\r\n        \"text\": \"Annem şeker hastasıydı. 80 yaşında eceliyle öldü. Babam da bağırsak kanseri vardı çok ağrı çekti o da bilemedik işte 70 yaşında vefat etti. Benim amca oğlunda da bağırsak kanseri var demişler, Denizli'de o da tedavi oluyormuş.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 30,\r\n        \"text\": \"Kan şekeri ölçümlerinize bir bakalım.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 31,\r\n        \"text\": \"{BloodSugarTraceForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 32,\r\n        \"text\": \"Şimdi sizi muayene edeceğim (Muayenede yaşam bulgularının alınması, hastanın genel durumu, deri, tırnaklar, baş, boyun, gözler, kulaklar, dil, burun, ekstremiteler, toraks, genital bölge ve memeler incelenir. İnspeksiyon, palpasyon, oskültasyon teknikleri kullanılır).\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 33,\r\n        \"text\": \"{VitalSignForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 34,\r\n        \"text\": \"Şimdi de laboratuvar sonuçlarınıza bakacağım.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 35,\r\n        \"text\": \"{LaboratoryResultsForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 36,\r\n        \"text\": \"Ağrınızın olduğundan bahsetmiştiniz. Ağrınız nerede ve ağrınızı nasıl hissediyorsunuz? Sızlama, gerilme, keskin, künt, zonklama, sıkıştırma, yanma, acıma olarak?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 37,\r\n        \"text\": \"Karnım çok ağrıyor, batıyor, zonkluyor, sıkışıyor ve acıyor.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 38,\r\n        \"text\": \"Ağrınızı 0-10 üzerinden puanlayacak olsanız kaç verirdiniz? Ağrınız sürekli mi yoksa gelip gidiyor mu?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 39,\r\n        \"text\": \"8 verirdim, aralıklı olarak ağrıyor.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 40,\r\n        \"text\": \"Ağrınızı ne arttırıyor ne azaltıyor?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 41,\r\n        \"text\": \"Hareket etmek ağrımı arttıyor yattığım zaman daha iyi hissediyorum.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 42,\r\n        \"text\": \"Ağrı yaşamınızı nasıl etkiliyor? Ağrıya eşlik eden herhangi bir şikayetiniz var mı? Sizce bu ağrı neden olabilir?\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 43,\r\n        \"text\": \"Uykum etkileniyor, uyuyamıyorum, hareket edemiyorum, günlük bakımımı yapmakta çok zorlanıyorum. (Ağrı ile beraber nefesinin kesildiğini yüz ifadesi ile belli ediyor) Bir fikrim yok aşırı ağrım var sanki ameliyattan sonra daha da arttı gibi.\",\r\n        \"reply\": true,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 44,\r\n        \"text\": \"{PainDescriptionForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 45,\r\n        \"text\": \"Şimdi kapınıza dört yapraklı yonca asmalı mıyız diye bakacağım.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 46,\r\n        \"text\": \"{FallRiskForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 47,\r\n        \"text\": \"Doldurmam gereken son bir formum kaldı izninizle onu doldurayım.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 48,\r\n        \"text\": \"{NortonPressureUlcerForm}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      },\r\n      {\r\n        \"sequence\": 49,\r\n        \"text\": \"Geriye tek bir şey kaldı, hastalık sürecinizin daha sağlıklı geçmesi adına size bir tanı koymam gerekiyor.\",\r\n        \"reply\": false,\r\n        \"action\": false\r\n      },\r\n      {\r\n        \"sequence\": 50,\r\n        \"text\": \"{DiagnosisScreen}\",\r\n        \"reply\": true,\r\n        \"action\": true\r\n      }\r\n    ]\r\n  }\r\n  \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/scenario/create",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"scenario",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Scenarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\": \"636577a1a9304eb1637daa00\",\r\n    \"sequence\": 35,\r\n    \"scenarios\": [\r\n        {\r\n            \"text\": \"Baş dönmeniz var mı?\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Hayır yok\",\r\n            \"reply\": true,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Vücudunuzun herhangi bir bölgesinde yara var mı?\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Kolostomi bölgesi var ara sıra kızarıyor\",\r\n            \"reply\": true,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Şimdi güvenli çevrenin sağlanmasıyla ilgili bir form dolduracağım\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm0}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Devamında iletişim ile ilgili bir formum daha var\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm1}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Hemen ardından solunum ile alakalı bir form daha mevcut\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm2}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Günde kaç öğün yemek yiyorsunuz, bulantı/kusma gibi şikayetleriniz var mı?\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Üç öğün yiyorum, ara sıra midem bulanıyor\",\r\n            \"reply\": true,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Tamamdır bunları da işliyorum\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm3}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Kolostominizle ilgili bir form dolduracağım\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm4}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Genel bilgilerle alakalı bir formumu daha dolduruyorum\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm5}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Vücut sıcaklığınızla alakalı bir formum daha var\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm6}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Gördüğüm kadarıyla hareket etmenizde çok büyük bir sıkıntınız yok bunu da not ediyorum\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm7}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Boş vakitlerinizi nasıl geçiriyorsunuz?\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Emekliyim, boş vakitlerimde dinleniyorum. Hastalıktan dolayı pek bir şey yapamıyorum.\",\r\n            \"reply\": true,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Bunu da not ediyorum\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm8}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Birkaç bilgiyi de gözden geçiriyorum\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm9}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        },\r\n        {\r\n            \"text\": \"Uykuyla ilgili bir sorununuz var mı? Ortalama kaç saat uyuyorsunuz?\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Kolostomi olduğu için yan yatamıyorum, 5-6 saat kadar uyuyabiliyorum.\",\r\n            \"reply\": true,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"Anlıyorum bu formu doldurduktan sonra birkaç soru daha sormam gerek\",\r\n            \"reply\": false,\r\n            \"action\": false\r\n        },\r\n        {\r\n            \"text\": \"{LifeActivityForm10}\",\r\n            \"reply\": true,\r\n            \"action\": true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/scenario/insert",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"scenario",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Grade",
+			"item": [
+				{
+					"name": "Create Grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patientId\": \"636577a1a9304eb1637daa00\",\n    \"secret\": \"4d9d12a57301415389291a3126cd509a\",\n    \"grade\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiURL}}/grade/create",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"grade",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List of Grades By Patient Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/grade/list?id=636577a1a9304eb1637daa00",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"grade",
+								"list"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "636577a1a9304eb1637daa00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Grade of User with Patient Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/grade/get?id=636577a1a9304eb1637daa00&userId=6365162dec95b49e5ffe9a61",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"grade",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "636577a1a9304eb1637daa00"
+								},
+								{
+									"key": "userId",
+									"value": "6365162dec95b49e5ffe9a61"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Grade of User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/user/list",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/user/listadmins",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"user",
+								"listadmins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Nurse List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiURL}}/user/listnurses",
+							"host": [
+								"{{apiURL}}"
+							],
+							"path": [
+								"user",
+								"listnurses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Medicine",
+					"item": [
+						{
+							"name": "Create Medicine",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"medicineName\": \"Durajezik 25mg bant\",\n    \"dose\": \"3x1\",\n    \"periods\": \"12:00-18:00-6:00\",\n    \"type\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/order/medicine/create",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"order",
+										"medicine",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Medicines",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiURL}}/order/medicine/get",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"order",
+										"medicine",
+										"get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Medicine",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"medicineName\": \"Famodin tb. 2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/order/medicine/delete",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"order",
+										"medicine",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Medicine",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"medicineName\": \"Famodin tb. 2\",\n    \"dose\": \"50mg 1x111\",\n    \"periods\": \"06:11\",\n    \"type\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiURL}}/order/medicine/update",
+									"host": [
+										"{{apiURL}}"
+									],
+									"path": [
+										"order",
+										"medicine",
+										"update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "auth-token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiURL",
+			"value": "http://localhost"
+		}
+	]
+}
