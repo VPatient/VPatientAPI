@@ -6,7 +6,7 @@ const PatientModel = require('../../../models/PatientModel');
 const BloodSugarTraceModel = require('../../../models/BloodSugarTraceModel');
 
 // create patient blood sugar trace
-router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
+router.post("/create", verifyTokenAndAdmin, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 
@@ -35,7 +35,7 @@ router.post("/create", verifyTokenAndAdmin, verifyPatient, async (req, res) => {
 });
 
 // get patient laboratory results
-router.get("/get", auth, verifyPatient, async (req, res) => {
+router.get("/get", auth, verifyPatient, async(req, res) => {
     // get patient
     let patient = req.patient;
 

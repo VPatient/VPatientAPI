@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"f59e719248ef4c20a5fba75b70d51566","collectionName":"patientdiagnosismodels","type":"collection"}
